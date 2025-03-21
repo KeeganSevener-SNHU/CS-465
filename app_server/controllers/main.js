@@ -1,8 +1,11 @@
 /* GET Homepage */
-const index = (req, res) => {
-    res.render('index', {title: "Travlr Gateways"});
+//var fs = require('fs');
+//var homeStuff = JSON.parse(fs.readFileSync('./data/homeStuff.json','utf8'));
+
+const home = (req, res) => {
+    res.render('home', {title: "Travlr Gateways"});
 };
 
 module.exports = {
-    index
+    home
 }
