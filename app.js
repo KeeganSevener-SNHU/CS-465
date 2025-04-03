@@ -14,8 +14,13 @@ var newsRouter = require('./app_server/routes/news');
 var roomsRouter = require('./app_server/routes/rooms');
 var handlebars = require('hbs');
 
+var apiRouter = require('./app_api/routes/index');
+
 // Register the handlebars partials
 handlebars.registerPartials(__dirname + '/app_server/views/partials');
+
+// Load the database
+require('./app_api/models/db');
 
 var app = express();
 
@@ -37,6 +42,7 @@ app.use('/contact', contactRouter);
 app.use('/meals', mealsRouter);
 app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
