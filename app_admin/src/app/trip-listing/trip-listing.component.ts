@@ -5,6 +5,8 @@ import { TripCardComponent } from '../trip-card/trip-card.component';
 import { Trip } from '../models/trip';
 import { TripDataService } from '../../services/trip-data.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
+import { AuthResponse } from '../models/auth-response';
 
 @Component({
   selector: 'app-trip-listing',
@@ -20,7 +22,8 @@ export class TripListingComponent implements OnInit {
 
   constructor(
     private tripDataService: TripDataService,
-    private router: Router) {
+    private router: Router,
+    private authenSerivce: AuthenticationService) {
     console.log("trip-listing Constructor");
   }
 
@@ -45,17 +48,11 @@ export class TripListingComponent implements OnInit {
         console.log('Error: ' + error);
       }
     })
-    
+  }
 
-    // Testing stuff below DELETE THIS
-    /*
-    const mahthing = '2022-01-19T08:00:00.000Z';
-    //let mahDat = new Date(mahthing);
-    const newTrip = {
-      start: new Date(mahthing)
-    }
-    console.log("lol: " + newTrip.start);
-    */
+  // Check if user is logged in
+  public isLoggedIn() {
+    return this.authenSerivce.isLoggedIn();
   }
 
   ngOnInit(): void {
